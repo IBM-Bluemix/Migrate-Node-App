@@ -18,7 +18,7 @@ Few things to be aware of when porting a Microsoft Azure application to IBM Blue
 * On Bluemix we are using Node version 4.2.6 but you have the flexibility to use the version you want, you just need to specify in the package.JSON file where on Azure Node version 4.2.3 is used.  
 
 
-#### Finish App
+### Finish App
   ![](https://github.com/IBM-Bluemix/Migrate-Node-App/blob/master/public/images/gitImages/Screenshot-2016-01-27-13.40.18-1024x614.png)
 
 Source code of this application: 
@@ -27,14 +27,14 @@ Source code of this application:
 Following is a step-by-step process describing how to migrate a sample application from Microsoft Azure to IBM Bluemix. The sample Azure application, named MigrateNodeApp, is a NodeJS application, it consumes a JSON Data file as the back-end data to retrieve the app data.  
   
   
-####Migration requirements:
+###Migration requirements:
 * A [Bluemix](https://console.ng.bluemix.net/registration/?cm_mmc=developerWorks-_-dWdevcenter-_-bluemix-_-lp&cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=1453980223)  ID, to log in and run the application in Bluemix
 * The [Cloud Foundry](http://docs.cloudfoundry.org/devguide/installcf/?cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=1453980223) Command [Line Tool (CLI)](https://github.com/cloudfoundry/cli/releases?cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=1453980223) to push our app to Bluemix
 
 
-#####Migrate to Bluemix
-In order to migrate our app from Azure to Bluemix we need to make few small changes to the source code and then we will be good to go.  
-Step 1
+####Migrate to Bluemix
+In order to migrate our app from Azure to Bluemix we need to make few small changes to the source code and then we will be good to go.    
+######Step 1
 Make sure Node engine is specified in the package.json file, see below how its done:  
 ```
 {
@@ -61,7 +61,7 @@ Make sure Node engine is specified in the package.json file, see below how its d
 }
 ```
 
-Step 2
+######Step 2
 Add a manifest.yml file to your root of your application. The manifest.yml contains the application configurations in which will be running on Bluemix, to read more on manifest file [click here](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html?cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=145398022 ), for our example the manifest files is as follow:
 ```  
 applications:
@@ -74,27 +74,27 @@ applications:
   disk_quota: 1024M
 ```
 
-Step 3
+######Step 3
 Connection to the Database (Optional) - For our sample demo we are loading the data from a JSON file but if your application is connected to a database and reads and writes to the database then the environment variables must be reconfigured so that they can be mapped correctly. In Bluemix, all the bound service credentials are stored in an environment variable named VCAP_SERVICES. However, for Microsoft Azure, the environment variables for service binding can be different depending on the services. If you want to see working sample code with connection to a database then checkout the reference links below how to deploy a Node app with Cloudant.
 
-Step 4
-Navigate to the folder directory and push the app to Bluemix
+######Step 4
+Navigate to the folder directory and push the app to Bluemix  
 -> Make sure the name of the folder is the same name in which you have it named in your manifest file, for our example our web app is called “MigrateNodeApp“.  
--> Run the following commands to login, navigate to your space on Bluemix and push your app to Bluemix:  
+-> Run the following commands to login, navigate to your space on Bluemix and push your app to Bluemix:   
 ```
 $ cd MigrateNodeApp (Navigate to the application directory)
 $ cf login (Login to Bluemix and navigate to your space)
 $ cf push MigrateNodeApp (Pushing app to Bluemix and can be accessed on generated staging domain at xxxxxx.mybluemix.net)
 ```
 
-####Done!  
+###Done!  
 We should now be in action, access your application staging domain, in my case been: 
 [http://migratenodeapp.mybluemix.net/](http://migratenodeapp.mybluemix.net/)  
 
 If you have any questions or need support then contact me at @twanawebtech or leave a comment below.
 
 
-####Troubleshooting
+###Troubleshooting
 
 The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:
 
@@ -105,12 +105,12 @@ For more detailed information on troubleshooting your application, see the [Trou
 
 
 
-#### Useful links
+### Useful links
 [Creating apps with Node (official documentation)](https://www.ng.bluemix.net/docs/?cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=1453980223#starters/nodejs/index.html#nodejs)  
 [Sample Node App with Cloudant (blog)](https://cloudant.com/blog/building-apps-using-node-js-and-cloudant-on-ibm-bluemix/?cm_mc_uid=09081209147114537995720&cm_mc_sid_50200000=1453980223#.VqlNWVOLSis)  
 [Migrate an app from Heroku to Bluemix (blog)](http://www.ibm.com/developerworks/cloud/library/cl-bluemix-heroku-migrate-app/)  
 
 
-####Whats next?   
+###Whats next?   
 
 On our next article we will bind a Cloudant database service to load the data from where at the moment we are loading data from a JSON data file.  
